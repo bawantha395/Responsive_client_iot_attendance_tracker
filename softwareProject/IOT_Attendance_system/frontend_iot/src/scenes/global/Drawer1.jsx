@@ -15,9 +15,11 @@ import AddchartOutlinedIcon from "@mui/icons-material/AddchartOutlined";
 import LayersIcon from "@mui/icons-material/Layers";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Typography } from "@mui/material";
+import { Card, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useMediaQuery } from "@mui/material";
+
+import RouterBreadcrumbs from "./Breadcrumbs";
 
 const drawerWidth = 220;
 
@@ -104,7 +106,7 @@ export default function MiniDrawer() {
 
   const sidebarItems = [
     { title: "Lecture Times", icon: <ScheduleIcon />, to: "/lecturetimes" },
-    { title: "Reports", icon: <AddchartOutlinedIcon />, to: "/mymodules" },
+    { title: "Reports", icon: <AddchartOutlinedIcon />, to: "/courses " },
 
     { title: "Main Dashboard", icon: <HomeOutlinedIcon />, to: "/dashboard" },
     // { title: "My Modules", icon: <LayersIcon />, to: "/mymodules" },
@@ -271,6 +273,7 @@ export default function MiniDrawer() {
               >
                 Data
               </Typography> */}
+
               {sidebarItem_2.map((item, index) => (
                 <Item
                   key={index}
@@ -283,6 +286,36 @@ export default function MiniDrawer() {
               ))}
             </Box>
           </Menu>
+          {open && (
+            <Card
+              sx={{
+                ml: 0,
+                mr: 0,
+                mt: 0,
+
+                p: 1,
+
+                backgroundColor: colors.primary[400],
+                padding: 2,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "left",
+                justifyContent: "left",
+
+                borderRadius: 0,
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+              }}
+            >
+              <Box>
+                <Typography variant="h6"
+                color={colors.grey[300]}> Navigation Panel</Typography>
+              </Box>
+              {/* Reduced top margin */}
+
+              <RouterBreadcrumbs />
+              {/* Main content */}
+            </Card>
+          )}
         </ProSidebar>
       </Drawer>
       <Box component="main" sx={{ ml: -4, flexGrow: 1, p: 3 }}>

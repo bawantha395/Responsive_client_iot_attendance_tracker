@@ -1,4 +1,4 @@
-import { Box, IconButton, useTheme, Divider } from "@mui/material";
+import { Box, IconButton, useTheme, Divider ,useMediaQuery} from "@mui/material";
 import { useContext } from "react";
 import { ColorModeContext, tokens } from "../../theme";
 // Import useNavigate from react-router-dom
@@ -40,6 +40,7 @@ const Topbar = () => {
     window.location.href = "http://lms.eng.ruh.ac.lk/login/index.php";
   };
 
+  const isXSmall = useMediaQuery(theme.breakpoints.down('xs'));
   return (
     <Box
       display="flex"
@@ -67,7 +68,7 @@ const Topbar = () => {
       }}
     >
       <Box />
-      <RouterBreadcrumbs />
+      
 
       {/* ICONS */}
       <Box display="flex" alignItems="center">

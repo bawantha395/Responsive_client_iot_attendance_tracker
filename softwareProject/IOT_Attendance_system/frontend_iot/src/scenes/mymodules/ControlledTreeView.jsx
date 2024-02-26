@@ -28,8 +28,6 @@ export default function ControlledTreeView() {
     );
   };
 
-  
-
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -37,9 +35,13 @@ export default function ControlledTreeView() {
   const navigate = useNavigate(); // Initialize useNavigate
 
   const handleSemesterClick = (department, semester) => {
-    navigate(`/modulelist?department=${encodeURIComponent(department)}&semester=${encodeURIComponent(semester)}`);
+    navigate(
+      `/modulelist?department=${encodeURIComponent(
+        department
+      )}&semester=${encodeURIComponent(semester)}`
+    );
   };
-  
+
   return (
     <Box
       m={{ xs: "20px", sm: "40px" }} // Adjust margin based on screen size
@@ -134,10 +136,21 @@ export default function ControlledTreeView() {
           label="Department of Electrical and Information Engineering "
         >
           {Array.from({ length: 8 }, (_, i) => (
-          <div key={`electrical-semester${i + 1}`} onClick={() => handleSemesterClick('Electrical and Information Engineering', `Semester${i + 1}`)}>
-            <TreeItem nodeId={`electrical-${i + 2}`} label={`Semester${i + 1}`} />
-          </div>
-        ))}
+            <div
+              key={`electrical-semester${i + 1}`}
+              onClick={() =>
+                handleSemesterClick(
+                  "Electrical and Information Engineering",
+                  `Semester${i + 1}`
+                )
+              }
+            >
+              <TreeItem
+                nodeId={`electrical-${i + 2}`}
+                label={`Semester${i + 1}`}
+              />
+            </div>
+          ))}
           {/* <Link
             to="/eesem1"
             style={{ textDecoration: "none", color: "inherit" }}
@@ -178,10 +191,18 @@ export default function ControlledTreeView() {
           label="Department of Civil and Environmental Engineering "
         >
           {Array.from({ length: 8 }, (_, i) => (
-          <div key={`civil-semester${i + 1}`} onClick={() => handleSemesterClick('Civil and Environmental Engineering', `Semester${i + 1}`)}>
-            <TreeItem nodeId={`civil-${i + 11}`} label={`Semester${i + 1}`} />
-          </div>
-        ))}
+            <div
+              key={`civil-semester${i + 1}`}
+              onClick={() =>
+                handleSemesterClick(
+                  "Civil and Environmental Engineering",
+                  `Semester${i + 1}`
+                )
+              }
+            >
+              <TreeItem nodeId={`civil-${i + 11}`} label={`Semester${i + 1}`} />
+            </div>
+          ))}
           {/* <TreeItem nodeId="11" label="Semester1" />
           <TreeItem nodeId="12" label="Semester2" />
           <TreeItem nodeId="13" label="Semester3" />
@@ -217,10 +238,21 @@ export default function ControlledTreeView() {
           label="Department of Mechanical and Manufacturing Engineering "
         >
           {Array.from({ length: 8 }, (_, i) => (
-          <div key={`mechanical-semester${i + 1}`} onClick={() => handleSemesterClick('Mechanical and Manufacturing Engineering', `Semester${i + 1}`)}>
-            <TreeItem nodeId={`mechanical-${i + 20}`} label={`Semester${i + 1}`} />
-          </div>
-        ))}
+            <div
+              key={`mechanical-semester${i + 1}`}
+              onClick={() =>
+                handleSemesterClick(
+                  "Mechanical and Manufacturing Engineering",
+                  `Semester${i + 1}`
+                )
+              }
+            >
+              <TreeItem
+                nodeId={`mechanical-${i + 20}`}
+                label={`Semester${i + 1}`}
+              />
+            </div>
+          ))}
           {/* <TreeItem nodeId="20" label="Semester1" />
           <TreeItem nodeId="21" label="Semester2" />
           <TreeItem nodeId="22" label="Semester3" />
@@ -242,24 +274,41 @@ export default function ControlledTreeView() {
             padding: "10px 20px",
             borderRadius: "8px",
             boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.3)",
-            transition: "background-color 0.3s ease",
-            "&:hover": {
-              backgroundColor: colors.greenAccent[700], // Change background color on hover
-            },
+            // transition: "background-color 0.3s ease",
+            // "&:hover": {
+            //   backgroundColor: colors.greenAccent[700], // Change background color on hover
+            // },
             [theme.breakpoints.down("sm")]: {
               flexDirection: "column", // Change flex direction for smaller screens
               alignItems: "flex-start", // Adjust alignment for smaller screens
               padding: "15px", // Adjust padding for smaller screens
+            },
+            transition:
+              "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out", // Add transition for smooth effect
+            ":hover": {
+              transform: "translateY(-5px)", // Move the card up by 5px
+              boxShadow: "0 12px 16px rgba(0, 0, 0, 0.3)", // Increase the shadow to give a "lifting" effect
             },
           }}
           nodeId="28"
           label="Department of Interdisciplinary Studies "
         >
           {Array.from({ length: 8 }, (_, i) => (
-          <div key={`interdisciplinary-semester${i + 1}`} onClick={() => handleSemesterClick('Interdisciplinary Studies', `Semester${i + 1}`)}>
-            <TreeItem nodeId={`interdisciplinary-${i + 29}`} label={`Semester${i + 1}`} />
-          </div>
-        ))}
+            <div
+              key={`interdisciplinary-semester${i + 1}`}
+              onClick={() =>
+                handleSemesterClick(
+                  "Interdisciplinary Studies",
+                  `Semester${i + 1}`
+                )
+              }
+            >
+              <TreeItem
+                nodeId={`interdisciplinary-${i + 29}`}
+                label={`Semester${i + 1}`}
+              />
+            </div>
+          ))}
           {/* <TreeItem nodeId="29" label="Semester1" />
           <TreeItem nodeId="30" label="Semester2" />
           <TreeItem nodeId="31" label="Semester3" />
@@ -295,10 +344,21 @@ export default function ControlledTreeView() {
           label="Department of Marine Engineering and Naval Architecture "
         >
           {Array.from({ length: 8 }, (_, i) => (
-          <div key={`marine-semester${i + 1}`} onClick={() => handleSemesterClick('Marine Engineering and Naval Architecture', `Semester${i + 1}`)}>
-            <TreeItem nodeId={`marine-${i + 38}`} label={`Semester${i + 1}`} />
-          </div>
-        ))}
+            <div
+              key={`marine-semester${i + 1}`}
+              onClick={() =>
+                handleSemesterClick(
+                  "Marine Engineering and Naval Architecture",
+                  `Semester${i + 1}`
+                )
+              }
+            >
+              <TreeItem
+                nodeId={`marine-${i + 38}`}
+                label={`Semester${i + 1}`}
+              />
+            </div>
+          ))}
           {/* <TreeItem nodeId="38" label="Semester1" />
           <TreeItem nodeId="39" label="Semester2" />
           <TreeItem nodeId="40" label="Semester3" />

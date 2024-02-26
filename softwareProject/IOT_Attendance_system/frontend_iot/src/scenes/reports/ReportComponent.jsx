@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import { useTheme, Box, useMediaQuery, TextField, Button } from "@mui/material";
+import { useTheme, Box, useMediaQuery, TextField, Button ,Snackbar, Alert } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ErrorIcon from "@mui/icons-material/Error";
 import BlockIcon from "@mui/icons-material/Block";
@@ -221,6 +221,8 @@ export default function ReportComponent() {
   const [selectedEndTime, setSelectedEndTime] = useState("");
   const [filteredRows, setFilteredRows] = useState([]);
   const [isFiltering, setIsFiltering] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
   const csvLink = useRef(null);
 
   const handleClear = () => {
@@ -243,7 +245,8 @@ export default function ReportComponent() {
 
     // Check if end time is greater than start time
     if (formattedEndTime <= formattedStartTime) {
-      alert("End time must be greater than start time");
+      setSnackbarMessage("End time must be greater than start time");
+      setSnackbarOpen(true);
       return;
     }
 
@@ -368,55 +371,50 @@ export default function ReportComponent() {
         }}
       >
         <Box style={{ marginBottom: "16px" }}>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker
-              sx={{
-                marginRight: "30px",
-                marginTop: "15px",
-                marginLeft: "30px",
-                marginBottom: "5px",
-              }}
-              label="Select Date"
-              value={selectedDate}
-              onChange={(date) => setSelectedDate(date)}
-              renderInput={(params) => (
-                <TextField {...params} sx={{ margin: "16px" }} />
-              )}
-            />
-          </LocalizationProvider>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <TimePicker
-              sx={{
-                marginRight: "30px",
-                marginTop: "15px",
-                marginLeft: "30px",
-                marginBottom: "5px",
-              }}
-              value={selectedStartTime}
-              onChange={(time) => setSelectedStartTime(time)}
-              label="Start time"
-              inputProps={{ step: 1800 }}
-              renderInput={(params) => (
-                <TextField {...params} sx={{ margin: "16px" }} />
-              )}
-            />
-            <TimePicker
-              sx={{
-                marginRight: "30px",
-                marginTop: "15px",
-                marginLeft: "30px",
-                marginBottom: "5px",
-              }}
-              value={selectedEndTime}
-              onChange={(time) => setSelectedEndTime(time)} // Corrected this line
-              label="End time"
-              inputProps={{ step: 1800 }}
-              renderInput={(params) => (
-                <TextField {...params} sx={{ margin: "16px" }} />
-              )}
-            />
-          </LocalizationProvider>
-        </Box>
+  <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <DatePicker
+      sx={{
+        marginRight: "30px",
+        marginTop: "15px",
+        marginLeft: "30px",
+        marginBottom: "5px",
+      }}
+      label="Select Date"
+      value={selectedDate}
+      onChange={(date) => setSelectedDate(date)}
+      slotProps={{ textField: { sx: { margin: "16px" } } }}
+    />
+  </LocalizationProvider>
+  <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <TimePicker
+      sx={{
+        marginRight: "30px",
+        marginTop: "15px",
+        marginLeft: "30px",
+        marginBottom: "5px",
+      }}
+      value={selectedStartTime}
+      onChange={(time) => setSelectedStartTime(time)}
+      label="Start time"
+      inputProps={{ step: 1800 }}
+      slotProps={{ textField: { sx: { margin: "16px" } } }}
+    />
+    <TimePicker
+      sx={{
+        marginRight: "30px",
+        marginTop: "15px",
+        marginLeft: "30px",
+        marginBottom: "5px",
+      }}
+      value={selectedEndTime}
+      onChange={(time) => setSelectedEndTime(time)}
+      label="End time"
+      inputProps={{ step: 1800 }}
+      slotProps={{ textField: { sx: { margin: "16px" } } }}
+    />
+  </LocalizationProvider>
+</Box>
+
         <Box>
           <Button
             onClick={handleClear}
@@ -545,6 +543,19 @@ export default function ReportComponent() {
   <Box>No date selected</Box>
 )}
 
+<Snackbar
+          open={snackbarOpen}
+          autoHideDuration={6000}
+          onClose={() => setSnackbarOpen(false)}
+        >
+          <Alert
+            onClose={() => setSnackbarOpen(false)}
+            severity="error"
+            sx={{ width: "100%" }}
+          >
+            {snackbarMessage}
+          </Alert>
+        </Snackbar>
       </Box>
     </Box>
   );

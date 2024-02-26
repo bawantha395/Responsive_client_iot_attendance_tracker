@@ -14,7 +14,7 @@ import TopBar from "./scenes/global/Top_bar";
 // import Calendar from "./scenes/calendar/calendar";
 import { Divider } from "@mui/material";
 
-import MyModules from "./scenes/mymodules";
+// import MyModules from "./scenes/mymodules";
 import LectureTimes from "./scenes/lecturetimes";
 import ModuleList from "./scenes/mymodules/ModuleList";
 import MiniDrawer from "./scenes/global/Drawer1";
@@ -23,7 +23,7 @@ import RegisteredStudentsList from "./scenes/registedstudentslist";
 
 import MyModules2 from "./scenes/lecturetimes/MyModules2";
 import ModuleList2 from "./scenes/lecturetimes/ModuleList2";
-
+import MyModules from "./scenes/mymodules";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -44,7 +44,7 @@ function App() {
               <Route path="/" element={<LectureTimes />} />
               <Route path="/dashboard" element={<Dashboard />} />
 
-              <Route path="/mymodules" element={<MyModules />} />
+              <Route path="/courses" element={<MyModules />} />
               <Route path="/reports" element={<Reports />} />
               <Route
                 path="/registeredstudentslist"
@@ -53,10 +53,9 @@ function App() {
 
               <Route path="/lecturetimes" element={<LectureTimes />} />
               <Route path="/courselist" element={<MyModules2 />} />
-          <Route path="/modulelist" element={<ModuleList />} />
+              <Route path="/modulelist" element={<ModuleList />} />
               {/* <Route path="/eesem1a" element={<ModuleList2 />} /> */}
               <Route path="/moduleList2" element={<ModuleList2 />} />
-             
             </Routes>
           </main>
         </div>

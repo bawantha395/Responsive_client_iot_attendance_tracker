@@ -212,6 +212,12 @@ const Dashboard = () => {
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
     // Full width on all screen sizes
     width: isXSmall ? "80%" : 300,
+
+    transition: "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out", // Add transition for smooth effect
+    ':hover': {
+      transform: "translateY(-5px)", // Move the card up by 5px
+      boxShadow: "0 12px 16px rgba(0, 0, 0, 0.3)", // Increase the shadow to give a "lifting" effect
+    },
   };
 
   return (
